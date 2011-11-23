@@ -1,0 +1,5 @@
+export(DPM.GGM)
+export(iHMM)
+export(plot.DPM.GGM)
+export(plot.iHMM)
+useDynLib(DPM.GGM)
