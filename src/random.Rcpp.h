@@ -38,6 +38,7 @@ int sample_from(int *s, int n, int n_sub)
 	  k++;
 	}
     }
+  return(-1);
 }
 
 //Your compiler might complain a little about this function but whatever.
@@ -51,7 +52,7 @@ int rand_int(int n)
 }
 
 // Samples from a dirichlet distribution. l is the dimension, a is the parameter vector
-double rdirichlet(double *a, int l, double *x)
+void rdirichlet(double *a, int l, double *x)
 {
   int i;
   double sum;
@@ -71,6 +72,7 @@ int rand_int_weighted(int n, double *weights)
       if(r < weights[i])return(i);
       r -= weights[i];
     }
+  return(-1);
 }
 
 //Not really about randomness, but quite related.  Turns log probabilities into real probabilities

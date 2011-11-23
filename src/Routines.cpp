@@ -34,9 +34,10 @@ extern "C"{
 			int *cluster_mat, int* edge_mat, double* alpha, double* alpha0, int* cluster_total, 
 			int *predict, double *stepahead_x, double *stepahead_mu, double *stepahead_K, int* print_every, int *all_k, double *Kall)
 {
-  int i,j,k,l,q,r,t;
+  int i,k;
+
   GetRNGstate();
-  int state_i, state_j;
+
 
   GLOBAL_STIRLING = Stirling_numbers;
   GLOBAL_STIRLING_DIM = *Stirling_dim;
@@ -87,7 +88,7 @@ extern "C"{
 
 void run_dmp_routine(double *X, int *n, int *p, int *burn, int *reps, int *cluster_mat, int* edge_mat, int* print_every)
 {
-  int i,j,k,l,q,r,t;
+  int i,j,k,q,r,t;
   GetRNGstate();
   int state_i, state_j;
   DPMState state = new DPMState_CLASS(X,5,*n,*p);
@@ -145,7 +146,8 @@ void run_dmp_routine(double *X, int *n, int *p, int *burn, int *reps, int *clust
 void run_dmp_slice_routine(double *X, int *n, int *p, int *burn, int *reps, int *cluster_mat, int* edge_mat, int* print_every)
 {
 
-  int i,j,k,l,q,r,t;
+  int i,j,k,q,r,t;
+
   GetRNGstate();
   int state_i, state_j;
 
@@ -205,111 +207,3 @@ void run_dmp_slice_routine(double *X, int *n, int *p, int *burn, int *reps, int 
 
 
 }
- /*
-extern "C"{
-  void test(double *X, int *p, int *n, double *stirling)
-  {
-    int i,j;
-
-    //    double *x = sample_mult_norm(mu, Xmat);
-    //    for(i = 0; i < *p; i++)Rprintf("%f ",x[i]);
-    //    Rprintf("\n");
-
-    /*
-    printf("GET: And getting 3,4: %f\n",Xmat->get(2,3));
-    Xmat->set(0,0,10.0);
-    printf("SET: And now we have: %f\n",Xmat->get(0,0));
-    Matrix Q = new Mat(*p,*p);
-    Q->set_iden();
-    printf("IDEN:\n");
-    Q->print();
-    delete Q;
-    //    Xmat->print();
-    Q = Xmat->copy();
-    printf("Copy:\n");
-    Q->print();
-    delete Q;
-
-    printf("Invert:\n");
-    Q = Xmat->invert();
-    Q->print();
-    
-    printf("Log det: %f\n", Q->log_det());
-    delete Q;
-
-    Q = Xmat->chol();
-    printf("Chol:\n");
-    Q->print();
-    delete Q;
-
-    Q = Xmat->transpose();
-    printf("transpose: \n");
-    Q->print();
-
-    Q->Add(Xmat);
-    printf("Add: \n");
-    Q->print();
-    
-    delete Xmat;
-    delete Q;
-    */
-    /*
-    LPGraph graph = new Graph();
-    graph->InitGraph(*p);
-    for(i = 0; i < *p - 1; i++)
-      {
-	for(j = i + 1; j < *p; j++)
-	  {
-	    graph->Edge[i][j] = (unif_rand() < 0.5);
-	    graph->Edge[j][i] = graph->Edge[i][j];
-	  }
-      }
-    graph->GetMPSubgraphs();
-    graph->PrintA();
-
-    double temp = gwish_nc_complete(102,*p,Xmat);
-    printf("Norm Constant: %f\n", temp);
-    
-    Matrix Ksm = rwish(99, Xmat);
-    Ksm->print();
-
-    Ksm->set_iden();
-    Ksm = gwish_blgibbs_decomposable(graph, 99, Xmat);
-
-    Ksm->print();
-    delete graph;
-    */
-    /*
-    GGM G = new GGM_CLASS(*p);
-    util_print_vec_dbl(G->xbar, *p);
-    //    G->PrintInfo();
-    for(i = 0; i < *n; i++)
-      {
-	G->AddObs(Xmat, i);	
-      }
-    for(i =0; i < 50; i++)
-      {
-	G->DropObs(Xmat,i);
-      }
-    for(i = 0; i < 100; i++)
-      {
-	printf("i: %d\n",i);
-	G->graph->PrintA();
-	G->UpdateG();
-      }
-    delete G;
-    
-    State S;
-    S = new iHMMState(X,5,*n,*p);
-    S->UpdateXi();
-    //    S->UpdateGamma();
-    S->UpdateG();
-    S->Print();
-    return;
-
-
-  }
-*/
-
-
-

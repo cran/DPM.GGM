@@ -178,7 +178,7 @@ Graph::~Graph()
 //Should Call Function InitGraphFromMss() to properly initialize the graph
 void Graph::InitGraph(int n)
 {
-   int i, j;
+   int i;
 	
    nVertices = n;
    //alloc the matrix of vertices
@@ -576,7 +576,7 @@ int Graph::IsClique(int* vect,int nvect)
 int Graph::IsSubsetMss(int* vect,int nvect)
 {
    int i,j,l;
-   int okay;
+   int okay = 1;
    for(i=0;i<nMss;i++)
    {
       okay = 1;
@@ -967,7 +967,7 @@ void Graph::InitConnectedComponents()
 
 void Graph::GetMPSubgraphs()
 {
-   int i,j,s;
+   int i,j;
 	
    //if(IsDecomposable()) return;//easy task if the graph is decomposable
    //if not, generate the minimal fill-in graph
@@ -1019,8 +1019,8 @@ void Graph::GetMPSubgraphs()
    {
       //identify a terminal clique Cj
       int edg;
-      int Ci;
-      int Cj;
+      int Ci = 0;
+      int Cj = 0;
       for(edg=0;edg<gfill->nTreeEdges;edg++)
       {
 	 //if we already used that edge, go to the next one
@@ -1511,7 +1511,7 @@ int EliminationGraph::SearchVertex()
 LPGraph MakeFillInGraph(LPGraph graph)
 {
 	int u,v;
-	int i,j;
+	int i;
 	
 	LPGraph gfill = new Graph(graph);
 	//CheckPointer(gfill);
@@ -1567,7 +1567,7 @@ LPGraph MakeFillInGraph(LPGraph graph)
 void TurnFillInGraph(LPGraph graph)
 {
 	int u,v;
-	int i,j;
+	int i;
 	
 	LPGraph gfill = graph;
 	//CheckPointer(gfill);

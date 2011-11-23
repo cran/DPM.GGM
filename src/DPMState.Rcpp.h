@@ -7,7 +7,6 @@ double DPMState_CLASS::PredictiveDistribution(int k, int l, GGM G)
   double a;
   double n0 = .01;
   double *mu0 = new double[p];
-  int n_group;
   double *mu_bar = new double[p];
   double *mu_tilde = new double[p];
   for(i = 0; i < p; i++)mu0[i] = 0;
@@ -18,7 +17,7 @@ double DPMState_CLASS::PredictiveDistribution(int k, int l, GGM G)
   double J_G;
   double Norm_terms;
 
-  if(G->n > 0) coef = log(G->n);
+  if(G->n > 0) coef = log( (double) G->n);
 
   D_prior = G->DplusU->copy();
 
@@ -57,8 +56,8 @@ double DPMState_CLASS::PredictiveDistribution(int k, int l, GGM G)
 		    
 DPMState_CLASS::DPMState_CLASS(double *data, int L_start, int n_obs, int p_model)
 {
-  int i,k,l;
-  int temp;
+  int i;
+
 
   X = new Mat(n_obs,p_model,data);
   L = L_start;
@@ -124,14 +123,14 @@ void DPMState_CLASS::UpdateAlpha()
 
 void DPMState_CLASS::UpdateXi()
 {
-  int i, j, k, l;
+  int i, j, l;
   GGM *GGMlist_new;
   GGM *tempGGMlist;
 
   GGM newGGM;
   int xi_old, xi_new;
   double *qs;
-  double temp;
+
 
   for(i = 0; i < n; i++)
     {

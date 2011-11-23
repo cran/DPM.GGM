@@ -123,6 +123,8 @@ double transition_coefficient(int *xi, int n, int j, int l, int L, double *gamma
       if(xi[j - 1] != xi[j + 1]) return( a * b / (c + 1));
     }
   //--------------------------------------------------	
+  return(-1);
+
 }//transition_coefficient
 
 
@@ -152,7 +154,7 @@ int sample_m(int r, double alpha, double gamma)
   for(i = 0; i < r; i++) sum_m += prob_m[i];
   for(i = 0; i < r; i++) prob_m[i] = prob_m[i] / sum_m;
   //  util_print_mat_dbl(prob_m,1,r,0);
-  double m_avg = 0.0;
+
   sample_m = rand_int_weighted(r, prob_m) + 1;
   //  printf("We had %d and %d sampled with %f and %f and the average was %f\n", r, sample_m, alpha, gamma, m_avg);
   delete[] prob_m;
@@ -173,7 +175,7 @@ double iHMMState::PredictiveDistribution(int k, int l, GGM  G)
   double a;
   double n0 = .01;
   double *mu0 = new double[p];
-  int n_group;
+  //  int n_group;
   double *mu_bar = new double[p];
   double *mu_tilde = new double[p];
   for(i = 0; i < p; i++)mu0[i] = 0;
@@ -237,8 +239,8 @@ double iHMMState::PredictiveDistribution(int k, int l, GGM  G)
 // Initialization Routine 		    
 iHMMState::iHMMState(double *data, int L_start, int n_obs, int p_model)
 {
-  int i,k,l;
-  int temp;
+  int i;
+
   n = n_obs;
   p = p_model;
 
@@ -289,7 +291,7 @@ iHMMState::~iHMMState()
 // Code to update gamma
 void iHMMState::UpdateGamma()
 {
-  int *M, l, lprime;
+  int l, lprime;
   int r_llprime;
   int i;
   double *M_dot;
@@ -392,7 +394,7 @@ void iHMMState::UpdateAlpha()
 //  Code to update the cluster vector, xi
 void iHMMState::UpdateXi()
 {
-  int i, j, k, l;
+  int i, j, l;
   GGM *GGMlist_new;
   GGM newGGM;
   GGM *tempGGMlist;
@@ -400,11 +402,9 @@ void iHMMState::UpdateXi()
   double nu;
   double temp;
 
-  LPGraph newgraph;
   int xi_old, xi_new;
-  int others;
   double *qs;
-  double maxq, sumq;
+
 
   //  The big loop through the observations
   for(i = 0; i < n; i++)

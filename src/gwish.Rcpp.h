@@ -14,7 +14,7 @@
 // when the graph is full.
 double gwish_nc_complete(int delta, int p, Matrix D)
 {
-  double I;
+  //  double I;
   double d,c,a,g;
   double dblDelta;//Recasting the inputs makes life easier below
   double dblP;
@@ -28,7 +28,7 @@ double gwish_nc_complete(int delta, int p, Matrix D)
   d = D->log_det();
   d = ( (dblDelta + dblP - 1) / 2) * d;
 
-  c = (dblP * (dblDelta + dblP - 1)) / 2 * log(2);
+  c = (dblP * (dblDelta + dblP - 1)) / 2 * M_LN2;
 
   a = (dblDelta + dblP - 1) / 2;
   g = dblP * (dblP - 1) / 4 * log(M_PI);
@@ -103,11 +103,11 @@ double j_g_decomposable(LPGraph graph, Matrix D_prior, Matrix D_post, int delta,
 {
   double mypost = 0;
   int p = graph->nVertices;
-  int i, j, p_i, p_j;
+  int i, j;//, p_i, p_j;
   Matrix sub_D_post;
   Matrix sub_D_prior;
   int sub_p;
-  int sub_ee;
+  //  int sub_ee;
   int *clique = new int[p];
 
   //  util_print_mat_int(CliqueMat, *p,*p,0);
@@ -201,7 +201,7 @@ Matrix rwish(int delta, Matrix D)
 void gwish_blgibbs_iterate(LPGraph graph, int delta, Matrix D, Matrix K)
 {
   int p = graph->nVertices;
-  int i,j, p_clique;
+  int i, p_clique;
   int *clique_ID, *V_ID;
   int clique_num;
   Matrix submatrix_D;

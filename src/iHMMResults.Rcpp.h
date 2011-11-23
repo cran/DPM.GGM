@@ -41,15 +41,11 @@ void iHMMResults::UpdateResults(int rep, State state)
 {
 
   int i,j,n,p,ee;
-  double *x_ahead;
-  double *mu_ahead;
-  double *K_ahead;
   n = state->n;
   p = state->p;
   ee = p * (p - 1) / 2;
   int state_i, state_j;
   int t,q,r;
-  double *Kall_temp;
   //------------------- Update Cluster Information -------------------------------
   for(i = 0; i < n; i++)
     {

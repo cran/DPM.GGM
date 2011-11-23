@@ -3,8 +3,8 @@
 double DPMSliceState_CLASS::PredictiveDistribution(int k, GGM G)
 {
 
-  int i,j;
-  double a;
+  int i;
+
   double score;
   Matrix xmat = new Mat(1,p);
   for(i = 0; i < p; i++) xmat->set(0,i,X->get(k,i) - G->mu[i]);
@@ -33,8 +33,8 @@ double DPMSliceState_CLASS::PredictiveDistribution(int k, GGM G)
 		    
 DPMSliceState_CLASS::DPMSliceState_CLASS(double *data, int N_start, int n_obs, int p_model)
 {
-  int i,k,l;
-  int temp;
+  int i;
+
 
   X = new Mat(n_obs,p_model,data);
   N = N_start;
@@ -140,11 +140,11 @@ void DPMSliceState_CLASS::UpdateAlpha()
 
 void DPMSliceState_CLASS::UpdateXi()
 {
-  int i, j, k, l;
-  GGM *GGMlist_new;
-  GGM *tempGGMlist;
+  int i, l;
 
-  GGM newGGM;
+
+
+
   int xi_old, xi_new;
   double *qs;
   double temp;
@@ -225,7 +225,7 @@ void DPMSliceState_CLASS::UpdateGGM()
 
 void DPMSliceState_CLASS::UpdateW()
 {
-  int i,l;
+  int l;
   double r_sum = 0.0;
   double* z = new double[N];
   double z_prod = 1.0;

@@ -68,7 +68,6 @@ Matrix Mat::invert()
   Matrix A_inv = new Mat(p_r,p_c);
   char uplo = 'U';
   int info;
-  int i;
   int p = p_r;
   A_inv->set_iden();
   

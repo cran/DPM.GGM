@@ -168,8 +168,8 @@ void GGM_CLASS::UpdateG()
   //-----------------------------------------------------------
 
   //-------------- Compute a ratio ----------------------------
-  numerator = -log(n_dec_new) +  j_g_decomposable(newgraph, D_prior, DplusU, delta, n);
-  denominator = -log(n_dec) + j_g_decomposable(graph, D_prior, DplusU, delta, n);
+  numerator = -log( (double) n_dec_new) +  j_g_decomposable(newgraph, D_prior, DplusU, delta, n);
+  denominator = -log( (double) n_dec) + j_g_decomposable(graph, D_prior, DplusU, delta, n);
   alpha = numerator - denominator;
   r = log(unif_rand());
   if(r < alpha)
@@ -192,8 +192,8 @@ void GGM_CLASS::SampleParams()
 {
   
   //-----  Set-up -------------
-  int i,j,k,l;
-  double a;
+  int i;
+  //  double a;
   double n0 = .01;
   double *mu0 = new double[p];
   double *mu_bar = new double[p];
@@ -266,7 +266,7 @@ int FindDecomposableNeighbors(LPGraph graph, int *which)
 {
   int p = graph->nVertices;
   int ee = p * (p - 1) / 2;
-  int i,j;
+  int i;
   LPGraph temp;
   int num = 0;
 
